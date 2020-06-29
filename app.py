@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, render_template
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -20,9 +20,18 @@ print(os.environ.get('DATABASE_URL'))
 db.init_app(app)
 migrate.init_app(app, db)
 
-@app.route('/')
+@app.route('/', methods=('GET','POST'))
 def index():
-    return "Hello!"
+    if request.method == 'GET':
+        dbinfo = {}
+        return render_template("index.html", dbinfo=dbinfo)
+
+    if request.method == 'POST':
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.Text(), nullable=False)
+
+
+    return redirect("/")
 
 
 if __name__ == '__main__':
