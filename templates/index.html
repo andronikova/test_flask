@@ -5,12 +5,13 @@
     <title>index</title>
 </head>
 <body>
-    
+
 
 <form action="\" method="POST">
     <div>
         <input name="name" type="text" placeholder="name">
         <input name="year" type="number" placeholder="year">
+        <input type="submit">
     </div>
 </form>
 <br>
@@ -26,8 +27,8 @@
     <tbody>
     {% for key in dbinfo %}
         <tr>
-            <th scope="col">{{dbinfo[key]['name']}}</th>
-            <th scope="col">{{dbinfo[key]['year']}}</th>
+            <th scope="col">{{key}}</th>
+            <th scope="col">{{dbinfo[key]}}</th>
         </tr>
     {% endfor %}
     </tbody>
