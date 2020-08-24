@@ -1,11 +1,10 @@
 from flask import Flask, request, render_template, redirect
 import os
-# from config import Config
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from pprint import pprint
+import psycopg2
 
 app = Flask(__name__)
 
