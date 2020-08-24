@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect
 import sqlite3 as sql
-# import os
+import os
 # from config import Config
 
 from flask_sqlalchemy import SQLAlchemy
