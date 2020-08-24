@@ -18,17 +18,13 @@
 
     <h3> DB info </h3>
 <table>
-    <thead>
-        <tr>
-            <th scope="col" > name </th>
-            <th scope="col" > year </th>
-        </tr>
-    </thead>
+
     <tbody>
     {% for key in dbinfo %}
         <tr>
-            <th scope="col">{{key}}</th>
-            <th scope="col">{{dbinfo[key]}}</th>
+            {% for col in key %}
+                <th scope="col">{{key[col]}}</th>
+            {% endfor %}
         </tr>
     {% endfor %}
     </tbody>

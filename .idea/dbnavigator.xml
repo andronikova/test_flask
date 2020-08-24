@@ -23,15 +23,19 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="7b2f06ad-1e87-4e3a-b08e-0227e6f8f6bc">
+        <schema name="main" object-types="column, table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="7b2f06ad-1e87-4e3a-b08e-0227e6f8f6bc">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[CREATE TABLE 'names' ('year' INTEGER NOT NULL, 'name' VARCHAR(255) NOT NULL)
+      <console name="Connection" type="STANDARD" schema="main" session="Main">CREATE TABLE 'names' ('year' INTEGER NOT NULL, 'name' VARCHAR(255) NOT NULL)
 
 SELECT * FROM names
 
-INSERT INTO names (name, year) VALUES ('sasha', 1964)]]></console>
+INSERT INTO names (name, year) VALUES ('sasha', 1964)</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
