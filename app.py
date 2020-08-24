@@ -12,7 +12,9 @@ app = Flask(__name__)
 
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# print(os.environ['DATABASE_URL'])
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:assa1221@localhost:5432/names_years"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
