@@ -9,11 +9,12 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # print(os.environ['DATABASE_URL'])
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:assa1221@localhost:5432/names_years"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
