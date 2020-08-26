@@ -8,28 +8,17 @@ import psycopg2
 
 app = Flask(__name__)
 
-db = SQLAlchemy()
-db.create_all()
-migrate = Migrate()
-
-
-# SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 # DATABASE_URL=os.system("heroku config:get DATABASE_URL -a flasktest00")
-
-# DATABASE_URL = os.environ['DATABASE_URL']
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# print(os.environ['DATABASE_URL'])
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
                                         "postgresql://postgres:assa1221@localhost:5432/names_years"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #
-db.init_app(app)
-migrate.init_app(app, db)
+db = SQLAlchemy(app)
+migrate = Migrate(app,db)
 
-
+# migrate.init_app(app, db)
 
 class NY(db.Model):
     name = db.Column(db.String(),primary_key=True)
@@ -41,6 +30,9 @@ class NY(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.name)
+
+db.create_all()
+db.session.commit()
 
 
 @app.route('/', methods=('GET','POST'))
