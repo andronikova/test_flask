@@ -15,29 +15,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
                                         "postgresql://postgres:assa1221@localhost:5432/names_years"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-migrate = Migrate(app,db)
 
-class NY(db.Model):
-    name = db.Column(db.String(),primary_key=True)
-    year = db.Column(db.Integer)
+from models import db, NY
 
-    def __init__(self, name, year):
-        self.name = name
-        self.year = year
-
-    def __repr__(self):
-        return '<User {}>'.format(self.name)
-
-db.create_all()
-db.session.commit()
-
+with app.app_context():
+# def db_init():
+    db.init_app(app)
+    migrate = Migrate(app,db)
+    db.app = app
+    db.create_all()
+    db.session.commit()
 
 @app.route('/', methods=('GET','POST'))
 def index():
     if request.method == 'GET':
-        datas = NY.query.all()
 
+        datas = NY.query.all()
+        # datas = db.session.query(NY).query.all()
 
         results = [
             {
@@ -57,9 +51,7 @@ def index():
         db.session.add(new_in_db)
         db.session.commit()
 
-
         return redirect("/")
-
 
 if __name__ == '__main__':
     app.run(debug=True)
