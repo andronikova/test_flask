@@ -9,6 +9,7 @@ import psycopg2
 app = Flask(__name__)
 
 db = SQLAlchemy()
+db.create_all()
 migrate = Migrate()
 
 
