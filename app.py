@@ -14,11 +14,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
                                         "postgresql://postgres:assa1221@localhost:5432/names_years"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#
+
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
-
-# migrate.init_app(app, db)
 
 class NY(db.Model):
     name = db.Column(db.String(),primary_key=True)
@@ -61,11 +59,6 @@ def index():
 
 
         return redirect("/")
-
-
-# @app.route('/')
-# def hello():
-#     return {"hello": "world"}
 
 
 if __name__ == '__main__':
